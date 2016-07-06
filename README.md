@@ -138,6 +138,13 @@ AutoRollImagePager为AutoRollViewPager专用于轮播图片的一个实现。支
         }
     }
 ```
+---
+
+###截图
+![image](https://raw.githubusercontent.com/missmess/autorollpager/master/raw/picc1.jpg)
+![image](https://raw.githubusercontent.com/missmess/autorollpager/master/raw/picc2.png)
+![image](https://raw.githubusercontent.com/missmess/autorollpager/master/raw/picc3.jpg)
+![image](https://raw.githubusercontent.com/missmess/autorollpager/master/raw/picc4.jpg)
 
 ---
 
