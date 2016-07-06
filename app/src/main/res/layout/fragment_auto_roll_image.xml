@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.missmess.autorollpager.AutoRollImagePager
+            android:id="@+id/arp"
+            android:layout_width="wrap_content"
+            android:layout_height="220dp"/>
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/arp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:textColor="#666666"
+            android:text="When touch the AutoRollPager, auto roll will stopped. Release to auto roll again."/>
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/tv"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#DCDCDC" />
+
+        <CheckBox
+            android:id="@+id/cb_roll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/cb_loop"
+            android:layout_marginLeft="20dp"
+            android:checked="true"
+            android:text="Auto Roll"/>
+
+        <CheckBox
+            android:id="@+id/cb_loop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_toEndOf="@+id/cb_roll"
+            android:layout_toRightOf="@+id/cb_roll"
+            android:checked="true"
+            android:text="Loop Mode"/>
+
+        <CheckBox
+            android:id="@+id/cb_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/cb_roll"
+            android:layout_alignStart="@+id/cb_roll"
+            android:layout_below="@+id/cb_roll"
+            android:layout_marginTop="15dp"
+            android:checked="true"
+            android:text="title"/>
+
+        <CheckBox
+            android:id="@+id/cb_click"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/cb_title"
+            android:layout_alignStart="@+id/cb_title"
+            android:layout_below="@+id/cb_title"
+            android:layout_marginTop="15dp"
+            android:checked="true"
+            android:text="click event"/>
+
+        <SeekBar
+            android:id="@+id/sb_dot_interval"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/cb_title"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignStart="@+id/cb_title"
+            android:layout_below="@+id/textView"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:indeterminate="false"
+            android:max="15"
+            android:progress="3"/>
+
+        <SeekBar
+            android:id="@+id/sb_roll_interval"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/cb_title"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignStart="@+id/cb_title"
+            android:layout_below="@+id/textView2"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:indeterminate="false"
+            android:max="5"
+            android:progress="2"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/cb_click"
+            android:layout_alignStart="@+id/cb_click"
+            android:layout_below="@+id/cb_click"
+            android:layout_marginTop="20dp"
+            android:text="dot interval"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView"
+            android:layout_alignStart="@+id/textView"
+            android:layout_below="@+id/sb_dot_interval"
+            android:layout_marginTop="15dp"
+            android:text="roll interval"/>
+
+        <TextView
+            android:id="@+id/tv_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/sb_dot_interval"
+            android:layout_alignRight="@+id/sb_dot_interval"
+            android:layout_alignTop="@+id/textView"
+            android:text="8px"
+            android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+        <TextView
+            android:id="@+id/tv_roll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/sb_roll_interval"
+            android:layout_alignRight="@+id/sb_roll_interval"
+            android:layout_alignTop="@+id/textView2"
+            android:text="3000ms"
+            android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch_direction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/cb_click"
+            android:layout_alignEnd="@+id/tv_dot"
+            android:layout_alignRight="@+id/tv_dot"
+            android:checked="true"
+            android:text="Direction"
+            android:textOff="Left"
+            android:textOn="Right"
+            app:showText="true"/>
+
+        <View
+            android:id="@+id/line2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/sb_roll_interval"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"
+            android:background="#DCDCDC" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/line2"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:textColor="#666666"
+            android:lineSpacingExtra="4dp"
+            android:text="This is stuffing testing vertical scroll\nThis is stuffing testing vertical scroll\nThis is stuffing testing vertical scroll\nThis is stuffing testing vertical scroll\nThis is stuffing testing vertical scroll\nThis is stuffing testing vertical scroll\nThis is stuffing testing vertical scroll\nThis is stuffing testing vertical scroll\nThis is stuffing testing vertical scroll\n"/>
+
+    </RelativeLayout>
+</ScrollView>
