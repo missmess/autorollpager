@@ -84,14 +84,23 @@ public class AutoRollImageFragment extends Fragment implements CompoundButton.On
         titles.add("网络图片");
         titles.add("Drawable图片");
 
+        //设置图片源
         arp.setImageLists(images);
+        //设置描述标题
         arp.setTitles(titles);
+        //自动滚动（默认true）
         arp.setAutoRoll(true);
+        //设置指示点间隔（默认5dp）
         arp.setDotInterval(8);
+        //是否无限循环模式（默认false）
         arp.setLoopMode(true);
+        //设置自动滚动间隔（默认3秒）
         arp.setRollInterval(3000);
+        //设置轮播view点击事件
         arp.setOnPageClickListener(new ClickPager());
+        //设置自动滚动方向
         arp.setRollDirection(AutoRollViewPager.DIRECTION_RIGHT);
+        //完成配置并显示
         arp.showUp();
     }
 

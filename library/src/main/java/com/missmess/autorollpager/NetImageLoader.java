@@ -7,7 +7,7 @@ import com.lidroid.xutils.BitmapUtils;
 import com.missmess.library.R;
 
 /**
- * 网络图片加载器
+ * 网络图片加载器（可以根据需要更换）
  *
  * @author wl
  * @since 2016/07/05 15:06
