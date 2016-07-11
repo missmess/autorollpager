@@ -24,12 +24,11 @@
 
 ###如何添加到项目中
 
-暂不支持maven。Android Studio用户，添加项目中的library为module。在build.gradle引用该library
+Android Studio用户，可以很轻松地通过maven仓库引用到本library。只需要在项目的build.gradle中添加该depandencies：
   
   `
-  dependencies {
-    compile project(":library")
-}`
+    compile 'com.missmess.autorollpager:library:1.0.0'
+  `
 
 ---
 
