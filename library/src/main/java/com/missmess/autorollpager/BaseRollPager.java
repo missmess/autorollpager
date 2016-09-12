@@ -37,8 +37,12 @@ public class BaseRollPager extends ViewPager {
                 } else {
                     next = getCurrentItem() - 1;
                 }
-                if(!mLoopMode)
-                    next %= mAdapter.getRealCount();
+                if(!mLoopMode) {
+                    if(next == mAdapter.getRealCount())
+                        next = 0;
+                    if(next == -1)
+                        next = mAdapter.getRealCount() - 1;
+                }
 //                Log.e(TAG, "next=" + next);
                 setCurrentItem(next, true);
                 rollInternal();
@@ -179,7 +183,7 @@ public class BaseRollPager extends ViewPager {
                     if (mPagerClick != null) {
                         mPagerClick.onClick(pos);
                         rollInternal();
-                        return true;
+                        return super.onTouchEvent(ev);
                     }
                 }
                 rollInternal();

@@ -6,6 +6,15 @@
   
 ---
 
+
+###截图
+![image](https://raw.githubusercontent.com/missmess/autorollpager/master/raw/picc1.jpg)
+![image](https://raw.githubusercontent.com/missmess/autorollpager/master/raw/picc2.png)
+![image](https://raw.githubusercontent.com/missmess/autorollpager/master/raw/picc3.jpg)
+![image](https://raw.githubusercontent.com/missmess/autorollpager/master/raw/picc4.jpg)
+
+---
+
 ###主要功能介绍
 
 * 可以实现view自动轮播，带指示点。
@@ -27,7 +36,7 @@
 Android Studio用户，可以很轻松地通过maven仓库引用到本library。只需要在项目的build.gradle中添加该depandencies：
   
   `
-    compile 'com.missmess.autorollpager:library:1.0.0'
+    compile 'com.missmess.autorollpager:library:1.0.1'
   `
 
 ---
@@ -137,14 +146,6 @@ AutoRollImagePager为AutoRollViewPager专用于轮播图片的一个实现。支
         }
     }
 ```
----
-
-###截图
-![image](https://raw.githubusercontent.com/missmess/autorollpager/master/raw/picc1.jpg)
-![image](https://raw.githubusercontent.com/missmess/autorollpager/master/raw/picc2.png)
-![image](https://raw.githubusercontent.com/missmess/autorollpager/master/raw/picc3.jpg)
-![image](https://raw.githubusercontent.com/missmess/autorollpager/master/raw/picc4.jpg)
-
 ---
 
 ###关于作者
