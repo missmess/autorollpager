@@ -4,7 +4,6 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import com.lidroid.xutils.BitmapUtils;
-import com.missmess.library.R;
 
 /**
  * 网络图片加载器（可以根据需要更换）
@@ -18,10 +17,10 @@ public class NetImageLoader {
      */
     private BitmapUtils bitmapUtils;
 
-    public NetImageLoader(Context context) {
+    public NetImageLoader(Context context, int loadRes, int errorRes) {
         bitmapUtils = new BitmapUtils(context);
-        bitmapUtils.configDefaultLoadingImage(R.drawable.zhanwei_1);
-        bitmapUtils.configDefaultLoadFailedImage(R.drawable.zhanwei_2);
+        bitmapUtils.configDefaultLoadingImage(loadRes);
+        bitmapUtils.configDefaultLoadFailedImage(errorRes);
         bitmapUtils.configDefaultReadTimeout(30 * 1000);
         bitmapUtils.configDefaultConnectTimeout(30 * 1000);
     }

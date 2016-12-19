@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AutoRollViewPager">
+        <attr name="dot_focus" format="reference" />
+        <attr name="dot_normal" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="AutoRollImagePager">
+        <attr name="placeholder_load" format="reference" />
+        <attr name="placeholder_error" format="reference" />
+    </declare-styleable>
+</resources>

@@ -1,7 +1,10 @@
 package com.missmess.autorollpager;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
+
+import com.missmess.library.R;
 
 import java.util.List;
 
@@ -14,24 +17,30 @@ import java.util.List;
 public class AutoRollImagePager extends AutoRollViewPager {
     private RollImageAdapter adapter;
     private boolean dataChanged = false;
+    private int mLoadRes;
+    private int mErrorRes;
 
     public AutoRollImagePager(Context context) {
-        super(context);
-        init(context);
+        this(context, null);
     }
 
     public AutoRollImagePager(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init(context);
+        this(context, attrs, 0);
     }
 
     public AutoRollImagePager(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.AutoRollImagePager);
+        mLoadRes = typedArray.getResourceId(R.styleable.AutoRollImagePager_placeholder_load, R.drawable.zhanwei_1);
+        mErrorRes = typedArray.getResourceId(R.styleable.AutoRollImagePager_placeholder_error, R.drawable.zhanwei_2);
+        typedArray.recycle();
+
         init(context);
     }
 
     private void init(Context context) {
-        adapter = new RollImageAdapter(context);
+        adapter = new RollImageAdapter(context, mLoadRes, mErrorRes);
     }
 
     /**

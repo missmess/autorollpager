@@ -15,11 +15,12 @@ import java.util.List;
  * @since 2016/03/31 10:07
  */
 public class RollImageAdapter extends BaseRollAdapter {
-    private NetImageLoader imageLoader;
+    private final NetImageLoader imageLoader;
     private List<?> images;
 
-    public RollImageAdapter(Context context) {
+    public RollImageAdapter(Context context, int loadRes, int errorRes) {
         super(context);
+        imageLoader = new NetImageLoader(context, loadRes, errorRes);
     }
 
     public void setImageList(List<?> images) {
@@ -43,9 +44,6 @@ public class RollImageAdapter extends BaseRollAdapter {
 
         if (image instanceof String) {
             String url = (String) image;
-            if(imageLoader == null) {
-                imageLoader = new NetImageLoader(context);
-            }
             imageLoader.loadImage(viewpager_item, url);
         } else if(image instanceof Integer) {
             int resource = (int) image;

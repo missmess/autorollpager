@@ -1,6 +1,8 @@
 package com.missmess.autorollpager;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -35,19 +37,29 @@ public class AutoRollViewPager extends RelativeLayout {
     private List<View> dots;
     private  List<String> titles;
     private int dot_interval = 0;
+    private Drawable mNormalDot;
+    private Drawable mFocusDot;
 
     public AutoRollViewPager(Context context) {
-        super(context);
-        init();
+        this(context, null);
     }
 
     public AutoRollViewPager(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init();
+        this(context, attrs, 0);
     }
 
     public AutoRollViewPager(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.AutoRollViewPager);
+        mFocusDot = typedArray.getDrawable(R.styleable.AutoRollViewPager_dot_focus);
+        mNormalDot = typedArray.getDrawable(R.styleable.AutoRollViewPager_dot_normal);
+        if(mFocusDot == null)
+            mFocusDot = getResources().getDrawable(R.drawable.dot_focus);
+        if(mNormalDot == null)
+            mNormalDot = getResources().getDrawable(R.drawable.dot_normal);
+        typedArray.recycle();
+
         init();
     }
 
@@ -73,9 +85,9 @@ public class AutoRollViewPager extends RelativeLayout {
                     return;
                 for (int i = 0; i < dots.size(); i++) {
                     if (i == realPos)
-                        dots.get(i).setBackgroundResource(R.drawable.dot_focus);
+                        dots.get(i).setBackgroundDrawable(mFocusDot);
                     else
-                        dots.get(i).setBackgroundResource(R.drawable.dot_normal);
+                        dots.get(i).setBackgroundDrawable(mNormalDot);
                 }
             }
 
@@ -174,9 +186,9 @@ public class AutoRollViewPager extends RelativeLayout {
         for (int i = 0; i < length; i++) {
             View view = new View(getContext());
             if (i == convertRealPos(rollPager.getCurrentItem())) {
-                view.setBackgroundResource(R.drawable.dot_focus);
+                view.setBackgroundDrawable(mFocusDot);
             } else {
-                view.setBackgroundResource(R.drawable.dot_normal);
+                view.setBackgroundDrawable(mNormalDot);
             }
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                     dip2px(getContext(), 6), dip2px(
