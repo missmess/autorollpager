@@ -36,7 +36,7 @@
 Android Studio用户，可以很轻松地通过maven仓库引用到本library。只需要在项目的build.gradle中添加该depandencies：
   
   `
-    compile 'com.missmess.autorollpager:library:1.0.3'
+    compile 'com.missmess.autorollpager:library:1.0.4'
   `
 
 ---
