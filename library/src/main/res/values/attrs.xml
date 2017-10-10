@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="AutoRollViewPager">
+        <attr name="showDot" format="boolean" />
+        <attr name="dotGravity" format="enum" >
+            <enum name="center" value="0" />
+            <enum name="left" value="1" />
+            <enum name="right" value="2" />
+        </attr>
         <attr name="dot_focus" format="reference" />
         <attr name="dot_normal" format="reference" />
     </declare-styleable>

@@ -15,9 +15,12 @@ import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
+import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +28,9 @@ import com.missmess.autorollpager.AutoRollImagePager;
 import com.missmess.autorollpager.AutoRollViewPager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AutoRollImageFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener {
     private AutoRollImagePager arp;
@@ -33,12 +38,14 @@ public class AutoRollImageFragment extends Fragment implements CompoundButton.On
     private CheckBox cb_loop;
     private CheckBox cb_title;
     private CheckBox cb_click;
+    private CheckBox cb_dot;
     private SeekBar sb_dot_interval;
     private SeekBar sb_roll_interval;
     private List<String> titles;
     private TextView tv_dot;
     private TextView tv_roll;
     private SwitchCompat switch_direction;
+    private Spinner sp_dot_gravity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -54,7 +61,9 @@ public class AutoRollImageFragment extends Fragment implements CompoundButton.On
         cb_roll = (CheckBox) content.findViewById(R.id.cb_roll);
         cb_loop = (CheckBox) content.findViewById(R.id.cb_loop);
         cb_title = (CheckBox) content.findViewById(R.id.cb_title);
+        sp_dot_gravity = (Spinner) content.findViewById(R.id.sp_dot_gravity);
         cb_click = (CheckBox) content.findViewById(R.id.cb_click);
+        cb_dot = (CheckBox) content.findViewById(R.id.cb_dot);
         sb_dot_interval = (SeekBar) content.findViewById(R.id.sb_dot_interval);
         sb_roll_interval = (SeekBar) content.findViewById(R.id.sb_roll_interval);
         tv_dot = (TextView) content.findViewById(R.id.tv_dot);
@@ -64,10 +73,45 @@ public class AutoRollImageFragment extends Fragment implements CompoundButton.On
         cb_roll.setOnCheckedChangeListener(this);
         cb_loop.setOnCheckedChangeListener(this);
         cb_title.setOnCheckedChangeListener(this);
+        cb_dot.setOnCheckedChangeListener(this);
         cb_click.setOnCheckedChangeListener(this);
         sb_dot_interval.setOnSeekBarChangeListener(this);
         sb_roll_interval.setOnSeekBarChangeListener(this);
         switch_direction.setOnCheckedChangeListener(this);
+
+        ArrayList<Map<String, String>> data = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            HashMap<String, String> map = new HashMap<>();
+            String val = "";
+            if (i == 0)
+                val = "居中";
+            else if (i == 1)
+                val = "最左";
+            else if (i == 2)
+                val = "最右";
+            map.put("data", val);
+            data.add(map);
+        }
+        SimpleAdapter adapter = new SimpleAdapter(getContext(), data,
+                android.R.layout.simple_list_item_1, new String[]{"data"}, new int[]{android.R.id.text1});
+        sp_dot_gravity.setAdapter(adapter);
+        sp_dot_gravity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    arp.setDotGravity(AutoRollViewPager.GRAVITY_CENTER);
+                } else if (position == 1) {
+                    arp.setDotGravity(AutoRollViewPager.GRAVITY_LEFT);
+                } else if (position == 2) {
+                    arp.setDotGravity(AutoRollViewPager.GRAVITY_RIGHT);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void initData() {
@@ -172,6 +216,9 @@ public class AutoRollImageFragment extends Fragment implements CompoundButton.On
                     arp.setLoopMode(false);
                     arp.showUp();
                 }
+                break;
+            case R.id.cb_dot:
+                arp.setDotVisiblity(isChecked);
                 break;
             case R.id.cb_title:
                 if(isChecked) {

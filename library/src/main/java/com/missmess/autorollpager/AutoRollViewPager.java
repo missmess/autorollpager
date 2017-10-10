@@ -39,6 +39,11 @@ public class AutoRollViewPager extends RelativeLayout {
     private int dot_interval = 0;
     private Drawable mNormalDot;
     private Drawable mFocusDot;
+    private int dotGravity;
+    private boolean showDot;
+    public static final int GRAVITY_CENTER = 0;
+    public static final int GRAVITY_LEFT = 1;
+    public static final int GRAVITY_RIGHT = 2;
 
     public AutoRollViewPager(Context context) {
         this(context, null);
@@ -54,6 +59,8 @@ public class AutoRollViewPager extends RelativeLayout {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.AutoRollViewPager);
         mFocusDot = typedArray.getDrawable(R.styleable.AutoRollViewPager_dot_focus);
         mNormalDot = typedArray.getDrawable(R.styleable.AutoRollViewPager_dot_normal);
+        showDot = typedArray.getBoolean(R.styleable.AutoRollViewPager_showDot, true);
+        dotGravity = typedArray.getInt(R.styleable.AutoRollViewPager_dotGravity, GRAVITY_CENTER);
         if(mFocusDot == null)
             mFocusDot = getResources().getDrawable(R.drawable.dot_focus);
         if(mNormalDot == null)
@@ -123,10 +130,11 @@ public class AutoRollViewPager extends RelativeLayout {
         mLl = new LinearLayout(getContext());
         mLl.setOrientation(LinearLayout.HORIZONTAL);
         mLl.setGravity(Gravity.CENTER);
+        int padLR = dip2px(getContext(), DEFAULT_DOT_MARGIN);
+        mLl.setPadding(padLR, 0, padLR, 0);
 
-        LayoutParams lps = new LayoutParams(LayoutParams.WRAP_CONTENT, dip2px(getContext(), DEFAULT_TITLE_HEIGHT));
+        LayoutParams lps = new LayoutParams(LayoutParams.MATCH_PARENT, dip2px(getContext(), DEFAULT_TITLE_HEIGHT));
         lps.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-        lps.addRule(RelativeLayout.CENTER_HORIZONTAL);
         this.addView(mLl, lps);
     }
 
@@ -198,6 +206,30 @@ public class AutoRollViewPager extends RelativeLayout {
             mLl.addView(view);
             dots.add(view);
         }
+
+        applyDotVisibility();
+        applyDotGravity();
+    }
+
+    private void applyDotVisibility() {
+        mLl.setVisibility(showDot ? View.VISIBLE : View.GONE);
+    }
+
+    private void applyDotGravity() {
+        switch (dotGravity) {
+            case GRAVITY_CENTER:
+                mLl.setGravity(Gravity.CENTER);
+                mTv.setGravity(Gravity.END | Gravity.CENTER_VERTICAL);
+                break;
+            case GRAVITY_LEFT:
+                mLl.setHorizontalGravity(Gravity.START);
+                mTv.setGravity(Gravity.END | Gravity.CENTER_VERTICAL);
+                break;
+            case GRAVITY_RIGHT:
+                mLl.setHorizontalGravity(Gravity.END);
+                mTv.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
+                break;
+        }
     }
 
     private int convertRealPos(int virtualPos) {
@@ -218,6 +250,16 @@ public class AutoRollViewPager extends RelativeLayout {
      */
     public void setRollDirection(int direction) {
         rollPager.setDirection(direction);
+    }
+
+    public void setDotVisiblity(boolean show) {
+        showDot = show;
+        applyDotVisibility();
+    }
+
+    public void setDotGravity(int gravity) {
+        this.dotGravity = gravity;
+        applyDotGravity();
     }
 
     /**

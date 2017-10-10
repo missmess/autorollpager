@@ -61,6 +61,17 @@
             android:text="Loop Mode"/>
 
         <CheckBox
+            android:id="@+id/cb_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/cb_loop"
+            android:layout_marginRight="20dp"
+            android:checked="true"
+            android:text="Show Dot"/>
+
+        <CheckBox
             android:id="@+id/cb_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,6 +92,14 @@
             android:layout_marginTop="15dp"
             android:checked="true"
             android:text="click event"/>
+
+        <Spinner
+            android:id="@+id/sp_dot_gravity"
+            android:layout_width="wrap_content"
+            android:layout_alignBottom="@+id/cb_click"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_height="wrap_content"/>
 
         <SeekBar
             android:id="@+id/sb_dot_interval"
